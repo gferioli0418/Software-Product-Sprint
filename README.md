@@ -1,6 +1,6 @@
 # Google Software Product Sprint
 
-This repo contains [your name]'s portfolio and SPS projects
+This repo contains Giovanni's portfolio and SPS projects
 
 To get started:
 
