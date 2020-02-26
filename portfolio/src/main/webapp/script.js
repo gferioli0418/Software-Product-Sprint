@@ -26,3 +26,8 @@ function randomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = Fact;
 }
+function getName(){
+     fetch('/data').then(response => response.text()).then((greeting) => {
+    document.getElementById('greeting-container').innerText = greeting;
+  });
+}
