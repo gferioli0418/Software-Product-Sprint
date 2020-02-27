@@ -13,8 +13,10 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
-
+import java.io.*; 
+import java.util.*;
 import java.io.IOException;
+import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +29,20 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;");
-    response.getWriter().println("<h1>Data page</h1>");
-    response.getWriter().println("<p>Hello Giovanni</p>");
+    // response.getWriter().println("<h1>Data page</h1>");
+    // response.getWriter().println("<p>Hello Giovanni</p>");
+
+    ArrayList<String> s = new ArrayList<String>(3);
+    s.add("One : First Element");
+    s.add("Two : Second Element");
+    s.add("Three : Third Element");
+    String json = gsonToJson(s);
+    response.getWriter().println(json);
+
+  }
+   private String gsonToJson(ArrayList<String> str) {
+    Gson gson = new Gson();
+    String json = gson.toJson(str);
+    return json;
   }
 }

@@ -27,7 +27,25 @@ function randomFact() {
   factContainer.innerText = Fact;
 }
 function getName(){
-     fetch('/data').then(response => response.text()).then((greeting) => {
-    document.getElementById('greeting-container').innerText = greeting;
+    
+     fetch('/data').then(response => response.json()).then((list) => {
+         console.log(list[0])
+    const json = document.getElementById('list-container');
+    json.innerHTML = '';
+    json.appendChild(
+        createListElement('1: ' + list[0]));
+    json.appendChild(
+        createListElement('2: ' + list[1]));
+    json.appendChild(
+        createListElement('3: ' + list[2]));
+
   });
 }
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
+
+  
