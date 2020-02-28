@@ -26,21 +26,22 @@ function randomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = Fact;
 }
-function getName(){
+
+function getName() {
     
-     fetch('/data').then(response => response.json()).then((list) => {
-         console.log(list[0])
+  fetch('/data').then(response => response.json()).then((list) => {
+    console.log(list);
     const json = document.getElementById('list-container');
     json.innerHTML = '';
     json.appendChild(
-        createListElement('1: ' + list[0]));
+      createListElement( list[0]));
     json.appendChild(
-        createListElement('2: ' + list[1]));
+      createListElement( list[1]));
     json.appendChild(
-        createListElement('3: ' + list[2]));
-
+      createListElement( list[2]));
   });
 }
+
 function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
