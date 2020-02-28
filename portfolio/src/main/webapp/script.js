@@ -31,13 +31,13 @@ function getName() {
     
   fetch('/data').then(response => response.json()).then((list) => {
     console.log(list);
-    const json = document.getElementById('list-container');
-    json.innerHTML = '';
-    json.appendChild(
+    const jsonHTML = document.getElementById('list-container');
+    jsonHTML.innerHTML = '';
+    jsonHTML.appendChild(
       createListElement( list[0]));
-    json.appendChild(
+    jsonHTML.appendChild(
       createListElement( list[1]));
-    json.appendChild(
+    jsonHTML.appendChild(
       createListElement( list[2]));
   });
 }
