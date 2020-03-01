@@ -26,3 +26,19 @@ function randomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = Fact;
 }
+
+function getName() {
+    
+  fetch('/data').then(response => response.json()).then((list) => {
+    console.log(list);
+    const jsonHTML = document.getElementById('list-container');
+    list.map(createListElement).forEach(e => jsonHTML.appendChild(e));
+  });
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+  

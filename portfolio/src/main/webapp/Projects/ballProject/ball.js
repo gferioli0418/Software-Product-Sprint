@@ -3,20 +3,16 @@ let radius = 16;
 
 
 function setup() {
-
   let Vg = createVector(0, .1);
   createCanvas(windowWidth, windowHeight );
-
-
-
 }
 
 function mousePressed() {
   let b = new Bubble(mouseX, mouseY, 0, 4, radius);
   bubbles.push(b);
 }
-function draw() {
 
+function draw() {
   background(0, 77, 153);
 
   for (let i = 0; i < bubbles.length; i++) {
@@ -42,13 +38,11 @@ function Bubble(x, y, dx, dy, r) {
   this.fast = true;
   this.radius = r;
 
-
-
-
   this.move = function () {
     this.x = this.x + this.dx;
     this.y = this.y + this.dy;
     this.dy = this.dy + .1;
+
     if (this.x - this.radius <= 0 || this.x + this.radius >= width) {
       this.dx = -this.dx;
     }
@@ -65,7 +59,6 @@ function Bubble(x, y, dx, dy, r) {
   }
 
   this.show = function () {
-
     stroke(255);
     strokeWeight(1);
     fill(148, 184, 184);
