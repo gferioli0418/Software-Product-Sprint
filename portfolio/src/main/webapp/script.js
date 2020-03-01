@@ -32,13 +32,7 @@ function getName() {
   fetch('/data').then(response => response.json()).then((list) => {
     console.log(list);
     const jsonHTML = document.getElementById('list-container');
-    jsonHTML.innerHTML = '';
-    jsonHTML.appendChild(
-      createListElement( list[0]));
-    jsonHTML.appendChild(
-      createListElement( list[1]));
-    jsonHTML.appendChild(
-      createListElement( list[2]));
+    list.map(createListElement).forEach(e => jsonHTML.appendChild(e));
   });
 }
 
@@ -47,6 +41,4 @@ function createListElement(text) {
   liElement.innerText = text;
   return liElement;
 }
-
-
   

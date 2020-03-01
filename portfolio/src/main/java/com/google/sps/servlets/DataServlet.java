@@ -57,8 +57,6 @@ class Message{
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  ArrayList<String> messageArr = new ArrayList<String>(1);
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
       
@@ -69,7 +67,6 @@ public class DataServlet extends HttpServlet {
 
     List<Message> messages = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-
       long id = entity.getKey().getId();
       String title = (String) entity.getProperty("title");
       long timestamp = (long) entity.getProperty("timestamp");
@@ -98,7 +95,6 @@ public class DataServlet extends HttpServlet {
     String number = getParameter(request, "number", "");
     String subject = getParameter(request, "subject", "");
     String message = getParameter(request, "message", "");
-
     long timestamp = System.currentTimeMillis();
 
     Entity mes = new Entity("Message");
@@ -112,11 +108,10 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(mes);
     String json = new Gson().toJson(mes);
-    messageArr.add(json);
 
     // Respond with the result.
     response.setContentType("text/html;");
-    response.getWriter().println(messageArr);
+    response.getWriter().println(json);
     response.sendRedirect("/index.html");
   } 
 
