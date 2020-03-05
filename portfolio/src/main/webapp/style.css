@@ -1,9 +1,22 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+.jumboHeading {
+  background: url("IMG_6166.png") top center;
+  background-size: cover;
+  margin-bottom: 0em !important;
 }
-
-#fact-container {
-  margin-top: 20px;
+.jumboText {
+  background: rgba(0, 0, 0, 0.7);
+  padding-bottom: 1em;
+}
+.bigContainer {
+  padding-top: 20em;
+  padding-bottom: 20em;
+}
+.jumboProject {
+  background: url("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif")
+    top center;
+  background-size: cover;
+  padding-top: 0;
+  padding-bottom: 5em;
+  margin-bottom: 0;
+  margin-top: 0;
 }
