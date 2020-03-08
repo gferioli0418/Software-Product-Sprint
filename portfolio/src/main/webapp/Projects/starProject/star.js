@@ -1,36 +1,41 @@
-function star(){
-  this.x = random(-width,width);
-  this.y = random(-height,height);
+function star() {
+  this.x = random(-width, width);
+  this.y = random(-height, height);
   this.z = random(width);
-  this.pz= this.z;
+  this.pz = this.z;
 
-  this.move = function(){
-    this.z = this.z-speed;
+  this.move = function() {
+    this.z = this.z - speed;
 
-    if(this.z<1){
+    if (this.z < 1) {
       this.z = width;
-      this.x = random(-width,width);
-      this.y = random(-height,height);
+      this.x = random(-width, width);
+      this.y = random(-height, height);
       this.pz = this.z;
     }
+  };
+  this.show = function() {
+    this.sx = map(this.x / this.z, 0, 1, 0, width);
+    this.sy = map(this.y / this.z, 0, 1, 0, height);
 
-  }
-  this.show = function(){
-    this.sx = map(this.x/this.z,0,1,0,width);
-    this.sy = map(this.y/this.z,0,1,0,height);
+    this.d = map(this.z, 0, width, 15, 0);
 
-    this.d = map(this.z,0,width, 15,0);
-
-    this.px = map(this.x/this.pz,0,1,0,width);
-    this.py = map(this.y/this.pz,0,1,0,height);
+    this.px = map(this.x / this.pz, 0, 1, 0, width);
+    this.py = map(this.y / this.pz, 0, 1, 0, height);
     fill(255);
     noStroke();
-    ellipse(this.sx,this.sy,this.d);
+    ellipse(this.sx, this.sy, this.d);
 
-   
-    fill(255,255,255,100);
+    fill(255, 255, 255, 100);
 
-    this.pz =this.z;
-    triangle(this.sx-this.d/2,this.sy-this.d/2,this.sx+this.d/2,this.sy+this.d/2,this.px,this.py);
-  }
+    this.pz = this.z;
+    triangle(
+      this.sx - this.d / 2,
+      this.sy - this.d / 2,
+      this.sx + this.d / 2,
+      this.sy + this.d / 2,
+      this.px,
+      this.py
+    );
+  };
 }
