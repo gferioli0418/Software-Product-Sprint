@@ -7,3 +7,11 @@
 #fact-container {
   margin-top: 20px;
 }
+mp {
+  height: 100%;
+}
+bd {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
