@@ -8,35 +8,153 @@
     <script src="script.js"></script>
   </head>
 
-  <body class = "bd" onload="createMap();">
-    <div id="content">
-      <h1>Giovanni's Portfolio</h1>
+  <body>
 
-      <p>
-        Hello, I am a Computer Engineering Student, at the University of
-        Florida.
-      </p>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </head>
+  <body class = "bd" onload="createMap();">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/index.html">Insert Logo</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/index.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Projects/Projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="images/images.html">Pictures</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="blogs/blogs.html">*Blogs*</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="blogs/blogs.html">*books*</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Professional
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="Resume.pdf">Resume</a>
+              <a class="dropdown-item" href="#">Certificates</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="https://github.com/gferioli0418"
+                >Github</a
+              >
+              <a
+                class="dropdown-item"
+                href="https://www.linkedin.com/in/giovanni-ferioli"
+                >LinkedIn</a
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="blogs/blogs.html">*contact page*</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="content">
+      <div class="jumbotron jumboHeading">
+        <div class="container bigContainer">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col jumboText">
+              <h1 class="display-4" style="color:white;">
+                Hello, I'm Giovanni
+              </h1>
+              <p class="lead" style="color:white;">
+                A Computer Engineering Student at the University of Florida with
+                a passion for learning.Therate packs which had recently been
+                merged by the Covenant leadership. The two clans were ancient
+                enemies that had fought even before the massive civil war that
+                had knocked the Jiralhanae back to a pre-industrial state.
+                Naturally, this led to tensions between the two factions within
+                the pack. One clan
+              </p>
+              <br />
+              <a
+                class="btn btn-light btn-lg"
+                href="#list-container"
+                role="button"
+                >Learn about Gio!</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="jumbotron jumboProject">
+        <div class="container ">
+          <div class="row">
+            <div class="col"></div>
+            <div class="col jumboText">
+              <h1 class="display-4" style="color:white;">Projects</h1>
+              <p class="lead" style="color:white;">
+                he University of Florida to a pre-industrial state. Naturally,
+                this led to tensions between the two factions within the pack.
+                One clan
+              </p>
+              <br />
+              <a
+                class="btn btn-light btn-lg"
+                href="#list-container"
+                role="button"
+                >Learn about Gio!</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <p>Click here to get a random message:</p>
 
       <button onclick="randomFact()">click for a random Gio fact.</button>
-
-      <p>
-        Click <a href="images/images.html">here</a> to see more pictures of me!
-      </p>
-      <p>
-        Click <a href="blogs/blogs.html">here</a> to see what people have
-        written about me!
-      </p>
-      <p>
-        Click <a href="Projects/Projects.html">here</a> to see my
-        projects(🚧Under Construction!🚧)
-      </p>
-
-      <p><a href="Resume.pdf">RESUME</a>.</p>
-      <p>
-        <a href="https://www.linkedin.com/in/giovanni-ferioli">My LinkedIn</a>
-      </p>
 
       <div id="fact-container"></div>
 
@@ -71,10 +189,8 @@
         <input type="submit" />
       </form>
     </div>
-
     <h1>University of Florida </h1>
     <div class = "mp" id="map"></div>
   </body>
 </html>
-
 
