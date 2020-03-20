@@ -28,7 +28,7 @@ public final class FindMeetingQuery {
     long duration = request.getDuration();
     Collection<TimeRange> ranges = new ArrayList<>();
 
-    //--------------------------------------------------------------------edge case
+    //--------------------------------------------------------------------edge cases
     // if duration too long
     if (duration > TimeRange.WHOLE_DAY.duration()) {
       return ranges;
@@ -45,7 +45,6 @@ public final class FindMeetingQuery {
       // iterate through each element in collection
       Iterator<Event> itr = events.iterator();
       ArrayList<ArrayList<Integer>> meetings = new ArrayList<ArrayList<Integer>>();
-
       while (itr.hasNext()) {
         // add the start time and the end time to the 2D arraylist
         Event element = itr.next();
@@ -70,7 +69,6 @@ public final class FindMeetingQuery {
 
       // replace any overlaps with one big meetings that includes what was overlaped
       removeOverlap(meetings);
-
       TimeRange evt;
 
       // check if first event is in the beginning of day
