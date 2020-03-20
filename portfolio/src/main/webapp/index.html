@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>Giovanni's Portfolio</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
+    <script src="script.js"></script>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -27,8 +29,7 @@
     ></script>
     <script src="script.js"></script>
   </head>
-
-  <body>
+  <body class="bd" onload="createMap();">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="/index.html">Insert Logo</a>
       <button
@@ -183,5 +184,7 @@
         <input type="submit" />
       </form>
     </div>
+    <h1>University of Florida</h1>
+    <div class="mp" id="map"></div>
   </body>
 </html>
