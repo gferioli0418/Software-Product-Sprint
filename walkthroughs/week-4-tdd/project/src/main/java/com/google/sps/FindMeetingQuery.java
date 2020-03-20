@@ -79,7 +79,7 @@ public final class FindMeetingQuery {
         ranges.add(evt);
       }
       // add the in between times
-      for (i = 1; i < meetings.size(); i++) {
+      for (int i = 1; i < meetings.size(); i++) {
         // check if event end time is less than the next event start time
         if (meetings.get(i - 1).get(1) < meetings.get(i).get(0)) {
           evt = TimeRange.fromStartEnd(meetings.get(i - 1).get(1), meetings.get(i).get(0), false);

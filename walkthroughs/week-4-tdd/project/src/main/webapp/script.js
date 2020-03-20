@@ -17,10 +17,10 @@
  * the server. Using the response, it lists the options reported by the server.
  */
 function sendMeetingRequest() {
-  const duration = document.getElementById('duration').value;
+  const duration = document.getElementById("duration").value;
 
   // comma-separated list of names
-  const attendeesNamesString = document.getElementById('attendees').value;
+  const attendeesNamesString = document.getElementById("attendees").value;
   // split it into an array of names
   const attendees = attendeesNamesString.split(/\s*,\s*/);
 
@@ -28,7 +28,7 @@ function sendMeetingRequest() {
   // the web form.
   const meetingRequest = new MeetingRequest(duration, attendees);
 
-  queryServer(meetingRequest).then((timeRanges) => {
+  queryServer(meetingRequest).then(timeRanges => {
     updateResultsOnPage(timeRanges);
   });
 }
@@ -37,15 +37,19 @@ function sendMeetingRequest() {
  * Updates the UI to show the results of a query.
  */
 function updateResultsOnPage(timeRanges) {
-  const resultsContainer = document.getElementById('results');
+  const resultsContainer = document.getElementById("results");
 
   // clear out any old results
-  resultsContainer.innerHTML = '';
+  resultsContainer.innerHTML = "";
 
   // add results to the page
   for (const range of timeRanges) {
-    resultsContainer.innerHTML += '<li>' + timeToString(range.getStartTime()) +
-        ' - ' + timeToString(range.getEndTime()) + '</li>';
+    resultsContainer.innerHTML +=
+      "<li>" +
+      timeToString(range.getStartTime()) +
+      " - " +
+      timeToString(range.getEndTime()) +
+      "</li>";
   }
 }
 
@@ -54,18 +58,18 @@ function updateResultsOnPage(timeRanges) {
  */
 function queryServer(meetingRequest) {
   const json = JSON.stringify(meetingRequest);
-  return fetch('/query', {method: 'POST', body: json})
-      .then((response) => {
-        return response.json();
-      })
-      .then((timeRanges) => {
-        // Convert the range from a json representation to our TimeRange class.
-        const out = [];
-        timeRanges.forEach((range) => {
-          out.push(new TimeRange(range.start, range.duration));
-        });
-        return out;
+  return fetch("/query", { method: "POST", body: json })
+    .then(response => {
+      return response.json();
+    })
+    .then(timeRanges => {
+      // Convert the range from a json representation to our TimeRange class.
+      const out = [];
+      timeRanges.forEach(range => {
+        out.push(new TimeRange(range.start, range.duration));
       });
+      return out;
+    });
 }
 
 /**
@@ -73,14 +77,14 @@ function queryServer(meetingRequest) {
  * hours and minutes in 24 hour format. For example: "11:32" or "22:14".
  */
 function timeToString(totalMinutes) {
-  const digitsToString = (digits) => {
-    return (digits < 10) ? ('0' + digits) : (digits);
+  const digitsToString = digits => {
+    return digits < 10 ? "0" + digits : digits;
   };
 
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
 
-  return digitsToString(hours) + ':' + digitsToString(minutes);
+  return digitsToString(hours) + ":" + digitsToString(minutes);
 }
 
 /**
@@ -118,16 +122,16 @@ class TimeRange {
  * server knows about and when they are busy.
  */
 function getAllEvents() {
-  return fetch('/get-events', {method: 'GET'})
-      .then((response) => {
-        return response.json();
-      })
-      .then((events) => {
-        return events.map((event) => {
-          const time = new TimeRange(event.when.start, event.when.duration);
-          return new Event(event.title, time, event.attendees);
-        });
+  return fetch("/get-events", { method: "GET" })
+    .then(response => {
+      return response.json();
+    })
+    .then(events => {
+      return events.map(event => {
+        const time = new TimeRange(event.when.start, event.when.duration);
+        return new Event(event.title, time, event.attendees);
       });
+    });
 }
 
 /**
@@ -177,8 +181,8 @@ function getUniquePeople(events) {
  * and when.
  */
 function initializeChart() {
-  const container = document.getElementById('timeline');
-  getAllEvents().then((events) => {
+  const container = document.getElementById("timeline");
+  getAllEvents().then(events => {
     initializeChartWithEvents(container, events);
   });
 }
@@ -189,10 +193,10 @@ function initializeChart() {
  */
 function initializeChartWithEvents(container, events) {
   const dataTable = new google.visualization.DataTable();
-  dataTable.addColumn({type: 'string', id: 'Person'});
-  dataTable.addColumn({type: 'string', id: 'Title'});
-  dataTable.addColumn({type: 'date', id: 'Start'});
-  dataTable.addColumn({type: 'date', id: 'End'});
+  dataTable.addColumn({ type: "string", id: "Person" });
+  dataTable.addColumn({ type: "string", id: "Title" });
+  dataTable.addColumn({ type: "date", id: "Start" });
+  dataTable.addColumn({ type: "date", id: "End" });
 
   // Use an array so that we can have people in sorted order. It will make the
   // display much nicer to look at.
@@ -203,7 +207,9 @@ function initializeChartWithEvents(container, events) {
     for (const e of events) {
       if (e.attendees.has(person)) {
         dataTable.addRow([
-          person, e.title, asDate(e.time.getStartTime()),
+          person,
+          e.title,
+          asDate(e.time.getStartTime()),
           asDate(e.time.getEndTime())
         ]);
       }
@@ -214,7 +220,6 @@ function initializeChartWithEvents(container, events) {
   chart.draw(dataTable);
 }
 
-
 // Load the chart when the doc is ready.
-google.charts.load('current', {'packages': ['timeline']});
+google.charts.load("current", { packages: ["timeline"] });
 google.charts.setOnLoadCallback(initializeChart);
