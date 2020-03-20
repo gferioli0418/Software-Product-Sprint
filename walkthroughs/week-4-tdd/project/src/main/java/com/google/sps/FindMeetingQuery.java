@@ -73,8 +73,10 @@ public final class FindMeetingQuery {
       }
 
       // check if any times overlap
-      boolean overlap = isOverlap(meetings);
-
+      removeOverlap(meetings);
+    for(int a = 0 ;a<meetings.size();a++){
+System.out.println(meetings.get(a).get(0)+","+meetings.get(a).get(1));
+    }
       TimeRange evt;
 
       // check if first event is in the beginning of day
@@ -91,9 +93,9 @@ public final class FindMeetingQuery {
         }
       }
 
-      if (meetings.get(meetings.size() - 1).get(1) != TimeRange.END_OF_DAY) {
-        evt = TimeRange.fromStartEnd(
-            meetings.get(meetings.size() - 1).get(1), TimeRange.END_OF_DAY, true);
+      if (meetings.get(meetings.size() - 1).get(1) != 1440) {
+        //System.out.println(meetings.get(meetings.size() - 1).get(1));
+        evt = TimeRange.fromStartEnd(meetings.get(meetings.size() - 1).get(1), TimeRange.END_OF_DAY, true);
         ranges.add(evt);
       }
     }
@@ -101,15 +103,14 @@ public final class FindMeetingQuery {
     return ranges;
   }
 
-  public boolean isOverlap(ArrayList<ArrayList<Integer>> list) {
+  public void removeOverlap(ArrayList<ArrayList<Integer>> list) {
     // sort events into ascending start time
 
     // check if any events overlap meaning end time of previous event is greater than start time of
     // current event
     for (int index = 1; index < list.size(); index++)
-      if (list.get(index - 1).get(1) > list.get(index).get(0))
-        return true;
+      if ((list.get(index - 1).get(0) <= list.get(index).get(0))&& (list.get(index - 1).get(1) >= list.get(index).get(1)))
+        list.remove(index);
 
-    return false;
   }
 }
