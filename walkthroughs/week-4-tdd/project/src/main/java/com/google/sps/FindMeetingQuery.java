@@ -72,21 +72,21 @@ public final class FindMeetingQuery {
       TimeRange evt;
 
       // check if first event is in the beginning of day
-      if (meetings.get(0).get(0) != TimeRange.START_OF_DAY) {
+      if (meetings.get(0).get(0) != TimeRange.START_OF_DAY &&(duration<=(meetings.get(0).get(0))-TimeRange.START_OF_DAY)) {
         evt = TimeRange.fromStartEnd(TimeRange.START_OF_DAY, meetings.get(0).get(0), false);
         ranges.add(evt);
       }
       // add the in between times
       for (int i = 1; i < meetings.size(); i++) {
         // check if event end time is less than the next event start time
-        if (meetings.get(i - 1).get(1) < meetings.get(i).get(0)) {
+        if (meetings.get(i - 1).get(1) < meetings.get(i).get(0)&&(duration<=(meetings.get(i).get(0)-meetings.get(i-1).get(1)))) {
           evt = TimeRange.fromStartEnd(meetings.get(i - 1).get(1), meetings.get(i).get(0), false);
           ranges.add(evt);
         }
       }
 
       // check if last event ends at the end of the day
-      if (meetings.get(meetings.size() - 1).get(1) != 1440) {
+      if (meetings.get(meetings.size() - 1).get(1) != 1440 &&(duration<=(TimeRange.END_OF_DAY-meetings.get(meetings.size() - 1).get(1)))) {
         evt = TimeRange.fromStartEnd(
             meetings.get(meetings.size() - 1).get(1), TimeRange.END_OF_DAY, true);
         ranges.add(evt);
