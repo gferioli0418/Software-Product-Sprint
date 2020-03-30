@@ -23,12 +23,7 @@ public class Greeter {
    */
   public String greet(String name) {
     
-    // for(int i = 0; i<name.length();i++) {
-    //     char temp = name.charAt(i);
-    //     if( temp== ' ' ){
-    //         name = name.substring(0,i)+name.substring(i+1,name.length());
-    //     }
-    // }
+    
     name = name.replace(" ","");
 
     return "Hello " + name;
