@@ -34,6 +34,8 @@ public final class FindMeetingQueryTest {
   // Some people that we can use in our tests.
   private static final String PERSON_A = "Person A";
   private static final String PERSON_B = "Person B";
+  private static final String PERSON_C = "Person C";
+  private static final String PERSON_D = "Person D";
 
   // All dates are the first day of the year 2020.
   private static final int TIME_0800AM = TimeRange.getTimeInMinutes(8, 0);
@@ -42,6 +44,45 @@ public final class FindMeetingQueryTest {
   private static final int TIME_0930AM = TimeRange.getTimeInMinutes(9, 30);
   private static final int TIME_1000AM = TimeRange.getTimeInMinutes(10, 0);
   private static final int TIME_1100AM = TimeRange.getTimeInMinutes(11, 00);
+
+  private static final String PERSON_AMELIA = "Amelia";
+  private static final String PERSON_AVA = "Ava";
+  private static final String PERSON_EMMA = "Emma";
+  private static final String PERSON_ISABELLA = "Isabella";
+  private static final String PERSON_JAMES = "James";
+  private static final String PERSON_LIAM = "Liam";
+  private static final String PERSON_LOGAN = "Logan";
+  private static final String PERSON_NOAH = "Noah";
+  private static final String PERSON_OLIVER = "Oliver";
+  private static final String PERSON_OLIVIA = "Olivia";
+
+  private static final int TIME_0800 = TimeRange.getTimeInMinutes(8, 0);
+  private static final int TIME_0830 = TimeRange.getTimeInMinutes(8, 30);
+  private static final int TIME_0900 = TimeRange.getTimeInMinutes(9, 0);
+  private static final int TIME_0930 = TimeRange.getTimeInMinutes(9, 30);
+  private static final int TIME_1000 = TimeRange.getTimeInMinutes(10, 0);
+  private static final int TIME_1030 = TimeRange.getTimeInMinutes(10, 30);
+  private static final int TIME_1100 = TimeRange.getTimeInMinutes(11, 0);
+  private static final int TIME_1130 = TimeRange.getTimeInMinutes(11, 30);
+  private static final int TIME_1200 = TimeRange.getTimeInMinutes(12, 0);
+  private static final int TIME_1230 = TimeRange.getTimeInMinutes(12, 30);
+  private static final int TIME_1300 = TimeRange.getTimeInMinutes(13, 0);
+  private static final int TIME_1330 = TimeRange.getTimeInMinutes(13, 30);
+  private static final int TIME_1400 = TimeRange.getTimeInMinutes(14, 0);
+  private static final int TIME_1430 = TimeRange.getTimeInMinutes(14, 30);
+  private static final int TIME_1500 = TimeRange.getTimeInMinutes(15, 0);
+  private static final int TIME_1530 = TimeRange.getTimeInMinutes(15, 30);
+  private static final int TIME_1600 = TimeRange.getTimeInMinutes(16, 0);
+  private static final int TIME_1630 = TimeRange.getTimeInMinutes(16, 30);
+  private static final int TIME_1700 = TimeRange.getTimeInMinutes(17, 0);
+  private static final int TIME_1730 = TimeRange.getTimeInMinutes(17, 30);
+  private static final int TIME_1800 = TimeRange.getTimeInMinutes(18, 0);
+  private static final int TIME_1830 = TimeRange.getTimeInMinutes(18, 30);
+  private static final int TIME_1900 = TimeRange.getTimeInMinutes(19, 0);
+  private static final int TIME_1930 = TimeRange.getTimeInMinutes(19, 30);
+  private static final int TIME_2000 = TimeRange.getTimeInMinutes(20, 0);
+  private static final int TIME_2030 = TimeRange.getTimeInMinutes(20, 30);
+  private static final int TIME_2100 = TimeRange.getTimeInMinutes(21, 0);
 
   private static final int DURATION_30_MINUTES = 30;
   private static final int DURATION_60_MINUTES = 60;
@@ -244,6 +285,34 @@ public final class FindMeetingQueryTest {
 
     Collection<TimeRange> actual = query.query(NO_EVENTS, request);
     Collection<TimeRange> expected = Arrays.asList(TimeRange.WHOLE_DAY);
+
+    Assert.assertEquals(expected, actual);
+  }
+  @Test
+  public void Test1() {
+    Collection<Event> events = Arrays.asList(
+        new Event("Hiring Review", TimeRange.fromStartEnd(TIME_0900, TIME_1000, false),
+            Arrays.asList(PERSON_JAMES)),
+        new Event("Work Trip Planning", TimeRange.fromStartEnd(TIME_1000, TIME_1030, false),
+            Arrays.asList(PERSON_LIAM)),
+        new Event("Team sync", TimeRange.fromStartEnd(TIME_1030, TIME_1100, false),
+            Arrays.asList(PERSON_JAMES)),
+        new Event("Hiring Meeting", TimeRange.fromStartEnd(TIME_1100, TIME_1200, false),
+            Arrays.asList(PERSON_JAMES, PERSON_OLIVIA)),
+        new Event("Team Outing", TimeRange.fromStartEnd(TIME_1130, TIME_1400, false),
+            Arrays.asList(PERSON_JAMES, PERSON_OLIVIA)),
+        new Event("OOO - Appointment", TimeRange.fromStartEnd(TIME_1200, TIME_1430, false),
+            Arrays.asList(PERSON_LIAM)),
+        new Event("Team Vision Planning", TimeRange.fromStartEnd(TIME_1430, TIME_1530, false),
+            Arrays.asList(PERSON_LIAM)));
+
+    MeetingRequest request =
+        new MeetingRequest(Arrays.asList(PERSON_JAMES, PERSON_LIAM), DURATION_1_HOUR);
+    Collection<TimeRange> expected =
+        Arrays.asList(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0900, false),
+            TimeRange.fromStartEnd(TIME_1530, TimeRange.END_OF_DAY, true));
+
+    Collection<TimeRange> actual = query.query(events, request);
 
     Assert.assertEquals(expected, actual);
   }

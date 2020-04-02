@@ -130,6 +130,7 @@ public final class Events {
           Arrays.asList(PERSON_EMMA)),
       new Event("Work Trip Planning", TimeRange.fromStartEnd(TIME_1000, TIME_1030, false),
           Arrays.asList(PERSON_LIAM)),
+
   };
 
   private Events() {
